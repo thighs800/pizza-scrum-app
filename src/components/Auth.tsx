@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../firebase'; // Firebase設定をインポート
 
 const auth = getAuth(app);
@@ -21,6 +21,20 @@ const Auth: React.FC = () => {
       }
     }
   };
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert('ログインしました！');
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        alert('ログインに失敗しました: ' + error.message);
+      } else {
+        alert('ログインに失敗しました: 不明なエラー');
+      }
+    }
+  }
 
   return (
     <div>
@@ -44,6 +58,7 @@ const Auth: React.FC = () => {
         />
       </div>
       <button onClick={handleSignUp}>登録</button>
+      <button onClick={handleSignIn}>ログイン</button>
     </div>
   );
 };
