@@ -1,5 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,5 +19,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// このファイルを他のコンポーネントから利用できるように、appをエクスポートする
-export {app};
+// 認証サービス（Firebase Authentication）を初期化
+const auth = getAuth(app);
+
+// データベースサービス（Firestore（）を初期化
+const db = getFirestore(app);
+
+// 必要なサービスをすべてエクスポート
+export {app, auth, db};
