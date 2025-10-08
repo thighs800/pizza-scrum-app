@@ -4,6 +4,7 @@ import { app } from './firebase';
 import './App.css';
 import Auth from './components/Auth'; // Authコンポーネントをインポート
 import TaskForm from './components/TaskForm'; // TaskFormコンポーネントをインポート
+import TaskList from './components/TaskList'; //TaskListコンポーネントをインポート
 
 const auth = getAuth(app);
 
@@ -44,6 +45,9 @@ function App() {
           <button onClick={handleSignOut}>ログアウト</button>
 
           <TaskForm /> {/* TaskFormコンポーネントを使用 */}
+
+          <TaskList /> {/* TaskListコンポーネントを使用 */}
+
         </div>
       ) : (
         // ユーザーがログインしていない場合
